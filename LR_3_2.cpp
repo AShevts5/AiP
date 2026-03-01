@@ -1,5 +1,6 @@
 #include <stdio.h> // библиотека для ввода-вывода (printf, scanf, fopen, fclose)
 #include <stdlib.h> // для функции remove
+using namespace std; // чтобы не указывать std::
 
 int main() // главный метод программы
 {
