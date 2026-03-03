@@ -8,7 +8,6 @@
 using namespace std; // чтобы не писать std::
 
 int main() { // главный метод программы
-    /*
     
     // Подключаем генератор случайных чисел
     srand(time(0));
@@ -103,7 +102,7 @@ int main() { // главный метод программы
             fprintf(file1, "%.2f ", arr[i]);
         }
 
-        fprintf(file1, "Max otriz element: ");
+        fprintf(file1, "\nMax otriz element: ");
         if (maxN != -100000000000000) {
             fprintf(file1, "%.2f\n", maxN);
         }
@@ -143,7 +142,7 @@ int main() { // главный метод программы
 
     return 0;
 
-    */
+   /*
     
     // Часть 2: матрица
 
@@ -255,6 +254,7 @@ int main() { // главный метод программы
         delete[] matrix[i];
     }
     delete[] matrix;
+    */
 
     return 0; // программа завершена успешно
 }
