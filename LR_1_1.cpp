@@ -1,8 +1,8 @@
-#include <iostream>
-#include <climits>
-using namespace std;
+#include <iostream> // библиотека для ввода-вывода
+#include <climits> // библиотека для предельных значений типов данных
+using namespace std; // чтобы не писать std::
 
-int main() {
+int main() { // главный метод программы
     cout << "Натуральные числа в диапазоне от -20 до 100:" << endl;
     
     int j = -20; 
@@ -42,5 +42,5 @@ int main() {
         cout << "Произведение всех натуральных чисел в интервале = " << p << endl;
     }
     
-    return 0;
+    return 0; // программа завершена успешно
 }
