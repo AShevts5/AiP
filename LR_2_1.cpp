@@ -1,5 +1,5 @@
-#include <iostream>
-using namespace std;
+#include <iostream> // библиотека для ввода-вывода
+using namespace std; // чтобы не писать std::
 
 int S(int H, int a) {
 	int V = H*a*a;
@@ -7,7 +7,7 @@ int S(int H, int a) {
 
 }
 
-int main() {
+int main() { // главный метод программы
     
     int H, a, V;
     cout << "Вычисляем объём 1 призмы: " << endl;
@@ -26,5 +26,5 @@ int main() {
     V = S(H, a);
     printf("Объём 2 призмы = %d", V);
     
-    return 0;
+    return 0; // программа завершена успешно
 }
