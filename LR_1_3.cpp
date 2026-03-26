@@ -1,7 +1,7 @@
-#include <iostream>
-using namespace std;
-
-int main() {
+#include <iostream> // библиотека для ввода-вывода
+using namespace std; // чтобы не писать std::
+ 
+int main() { // главный метод программы
     int n, m; 
     
     cout << "Введите количество строк матрицы (n): ";
@@ -59,5 +59,5 @@ int main() {
     }
     cout << " ]" << endl;
     
-    return 0;
+    return 0; // программа завершена успешно
 }
