@@ -1,7 +1,7 @@
-#include <iostream>
+#include <iostream> // библиотека для ввода-вывода
 #include <cstdlib>  // для функции rand()
 
-using namespace std;
+using namespace std; // чтобы не писать std::
 
 int find(int arr[], int size) {
     int lastIndex = -1;  
@@ -15,7 +15,7 @@ int find(int arr[], int size) {
     return lastIndex;
 }
 
-int main() {
+int main() { // главный метод программы
     const int SIZE = 15;
     int a[SIZE], b[SIZE];
     
@@ -59,5 +59,5 @@ int main() {
         cout << "Не удалось вычислить произведение индексов, так как в одном из массивов нет положительных элементов" << endl;
     }
     
-    return 0;
+    return 0; // программа завершена успешно
 }
