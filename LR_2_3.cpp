@@ -1,7 +1,7 @@
-#include <iostream>
-#include <string>  
+#include <iostream> // библиотека для ввода-вывода
+#include <string>  // библиотека для работы со строками
 
-using namespace std;
+using namespace std; // чтобы не писать std::
 
 int count(string text) {
     int count = 0;  
@@ -15,7 +15,7 @@ int count(string text) {
     return count; 
 }
 
-int main() {
+int main() { // главный метод программы
     string S1, S2;
     
     cout << "Введите первую строку (S1): ";
@@ -35,5 +35,5 @@ int main() {
         cout << "Количество цифр в текстах не совпадает." << endl;
     }
     
-    return 0;
+    return 0; // программа завершена успешно
 }
