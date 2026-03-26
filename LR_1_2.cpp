@@ -1,8 +1,8 @@
-#include <iostream>
-#include <cmath>
-using namespace std;
+#include <iostream> // библиотека для ввода-вывода
+#include <cmath> // библиотека для использования математических операций
+using namespace std; // чтобы не писать std::
 
-int main() {
+int main() { // главный метод программы
     // Способ 1: с использованием цикла for
     /*
     double p = 1.0;
@@ -60,5 +60,5 @@ int main() {
     double y = p + sum;
     cout << "y = " << y << endl;
     
-    return 0;
+    return 0; // программа завершена успешно
 }
