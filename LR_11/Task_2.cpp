@@ -14,7 +14,7 @@ struct QueueItem {
 };
 
 int main() {
-    QueueItem queue[MAX_WORDS]; 
+    QueueItem queue[max_words]; 
     int front = 0;  // индекс первого элемента
     int rear = -1;  // индекс последнего элемента
     int size = 0;   // текущее количество элементов
