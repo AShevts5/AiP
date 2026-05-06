@@ -1,46 +1,72 @@
 #include <iostream> // библиотека для ввода-вывода
-
-//чтобы не писать std:: 
-using namespace std;
+#include <string> // библиотека для работы со строками
+using namespace std; // чтобы не писать std::
 
 // Базовый класс Средство передвижения
 class Vehicle {
-public:
-    virtual void showInfo() const {
-        cout << "Неизвестное средство передвижения";
-    }
-
-    // Виртуальный деструктор
-    virtual ~Vehicle() {}
+    protected:
+        string number;  // Номер средства передвижения
+        string color;   // Цвет средства передвижения
+    
+    public:
+        // Конструктор с параметрами
+        Vehicle(const string& num = "", const string& col = "") 
+            : number(num), color(col) {}
+    
+        virtual void showInfo() const {
+            cout << "Неизвестное средство передвижения" 
+                 << " (Номер: " << (number.empty() ? "не указан" : number) 
+                 << ", Цвет: " << (color.empty() ? "не указан" : color) << ")";
+        }
+    
+        // Геттеры для доступа к атрибутам
+        string getNumber() const { return number; }
+        string getColor() const { return color; }
+    
+        // Виртуальный деструктор
+        virtual ~Vehicle() {}
 };
 
 // Производный класс "Велосипед"
 class Bicycle : public Vehicle {
 public:
+    Bicycle(const string& num = "", const string& col = "") 
+        : Vehicle(num, col) {}
+
     void showInfo() const override {
-        cout << "Велосипед";
+        cout << "Велосипед" 
+             << " (Номер: " << (number.empty() ? "не указан" : number) 
+             << ", Цвет: " << (color.empty() ? "не указан" : color) << ")";
     }
 };
 
 // Производный класс "Автомобиль"
 class Car : public Vehicle {
 public:
+    Car(const string& num = "", const string& col = "") 
+        : Vehicle(num, col) {}
+
     void showInfo() const override {
-        cout << "Автомобиль";
+        cout << "Автомобиль" 
+             << " (Номер: " << (number.empty() ? "не указан" : number) 
+             << ", Цвет: " << (color.empty() ? "не указан" : color) << ")";
     }
 };
 
 // Производный класс "Грузовик"
 class Truck : public Vehicle {
 public:
+    Truck(const string& num = "", const string& col = "") 
+        : Vehicle(num, col) {}
+
     void showInfo() const override {
-        cout << "Грузовик";
+        cout << "Грузовик" 
+             << " (Номер: " << (number.empty() ? "не указан" : number) 
+             << ", Цвет: " << (color.empty() ? "не указан" : color) << ")";
     }
 };
 
-
-// шаблонный класс для массива указателей
-
+// Шаблонный класс для массива указателей
 template <typename T>
 class PtrArray {
 private:
@@ -65,20 +91,18 @@ private:
     }
 
 public:
-    // Конструктор
+    // конструктор
     PtrArray() {
         data = nullptr;
         size = 0;
         capacity = 0;
     }
-
-    // Деструктор
+    // деструктор
     ~PtrArray() {
         clear();
         delete[] data;
     }
-
-    // Добавление в конец
+    // добавление в конец
     void addBack(T* obj) {
         if (size >= capacity) {
             int newCap = (capacity == 0) ? 1 : capacity * 2;
@@ -87,8 +111,7 @@ public:
         data[size] = obj;
         size++;
     }
-
-    // Вставка по индексу
+    // вставка по индексу
     void insertAt(int index, T* obj) {
         if (index < 0 || index > size) {
             throw "Ошибка: неверный индекс для вставки.";
@@ -106,8 +129,7 @@ public:
         data[index] = obj;
         size++;
     }
-
-    // Удаление по индексу
+    // удаление по индексу
     void removeAt(int index) {
         if (index < 0 || index >= size) {
             throw "Ошибка: неверный индекс для удаления.";
@@ -120,8 +142,7 @@ public:
         }
         size--;
     }
-
-    // Усечение массива
+    // усечение массива
     void truncate(int newSize) {
         if (newSize < 0 || newSize > size) {
             throw "Ошибка: некорректный размер для усечения.";
@@ -132,16 +153,14 @@ public:
         }
         size = newSize;
     }
-
-    // Очистка всего массива
+    // очистка всего массива
     void clear() {
         for (int i = 0; i < size; ++i) {
             delete data[i];
         }
         size = 0;
     }
-
-    // Перегрузка оператора []
+    // перегрузка оператора
     T*& operator[](int index) {
         if (index < 0 || index >= size) {
             throw "Ошибка: обращение к несуществующему индексу.";
@@ -156,17 +175,21 @@ public:
         return data[index];
     }
 
-    int getSize() const {
-        return size;
-    }
-
-    bool isEmpty() const {
-        return size == 0;
-    }
+    int getSize() const { return size; }
+    bool isEmpty() const { return size == 0; }
 };
 
+// Вспомогательная функция для ввода номера и цвета
+void getVehicleData(string& number, string& color) {
+    cin.ignore(); // Очистка буфера ввода
+    cout << "Введите номер средства передвижения: ";
+    getline(cin, number);
+    cout << "Введите цвет средства передвижения: ";
+    getline(cin, color);
+}
+
 void printMenu() {
-    cout << "\n    МЕНЮ    " << endl;
+    cout << "\n     МЕНЮ    " << endl;
     cout << "1. Добавить велосипед" << endl;
     cout << "2. Добавить автомобиль" << endl;
     cout << "3. Добавить грузовик" << endl;
@@ -191,18 +214,27 @@ int main() { // главный метод программы
 
         try {
             switch (choice) {
-                case 1:
-                    vehicles.addBack(new Bicycle());
+                case 1: {
+                    string number, color;
+                    getVehicleData(number, color);
+                    vehicles.addBack(new Bicycle(number, color));
                     cout << "Добавлен: Велосипед." << endl;
                     break;
-                case 2:
-                    vehicles.addBack(new Car());
+                }
+                case 2: {
+                    string number, color;
+                    getVehicleData(number, color);
+                    vehicles.addBack(new Car(number, color));
                     cout << "Добавлен: Автомобиль." << endl;
                     break;
-                case 3:
-                    vehicles.addBack(new Truck());
+                }
+                case 3: {
+                    string number, color;
+                    getVehicleData(number, color);
+                    vehicles.addBack(new Truck(number, color));
                     cout << "Добавлен: Грузовик." << endl;
                     break;
+                }
                 case 4: {
                     int index;
                     cout << "Введите индекс для вставки (от 0 до " << vehicles.getSize() << "): ";
@@ -212,10 +244,13 @@ int main() { // главный метод программы
                     cout << "Какой объект вставить? (1-Велосипед, 2-Авто, 3-Грузовик): ";
                     cin >> type;
 
+                    string number, color;
+                    getVehicleData(number, color);
+
                     Vehicle* newObj = nullptr;
-                    if (type == 1) newObj = new Bicycle();
-                    else if (type == 2) newObj = new Car();
-                    else if (type == 3) newObj = new Truck();
+                    if (type == 1) newObj = new Bicycle(number, color);
+                    else if (type == 2) newObj = new Car(number, color);
+                    else if (type == 3) newObj = new Truck(number, color);
                     else {
                         throw "Ошибка: неизвестный тип объекта.";
                     }
